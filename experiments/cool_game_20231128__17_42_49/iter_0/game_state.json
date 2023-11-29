@@ -1,0 +1,1 @@
+{"torch_health": 7, "torch_dmg": 3, "torch_torch_range": 3, "torch_duration": 1, "torch_cooldown": 5, "torch_ticks_between_moves": 4, "saw_health": 4, "saw_dmg_min": 5, "saw_dmg_max": 8, "saw_duration": 2, "saw_cooldown": 4, "saw_ticks_between_moves": 5, "nail_health": 2, "nail_dmg": 9, "nail_cooldown": 1, "nail_ticks_between_moves": 2}

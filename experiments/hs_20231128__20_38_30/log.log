@@ -1,0 +1,5 @@
+INFO:root:Called with: Namespace(n_epochs=1, snapshot_gameplay_policy_epochs=100, snapshot_game_state_epochs=100, reg=0, baseline=False, cma_init_var=0.05, n_league_epochs=1, n_battles_per_league=10, roster_path=None, num_hs=30, ignore_hp=False, team_size=3, update_after=100, func=<function init_hearthstone_domain at 0x2903cd1c0>)
+INFO:root:Starting balancer
+INFO:root:Iteration 0
+INFO:root:Saving rewards plot to ./experiments/hs_20231128__20_38_30/rewards.png
+INFO:root:[]
