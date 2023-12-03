@@ -11,6 +11,7 @@ with open('cards.csv', newline='', encoding='latin-1') as csvfile:  # Change the
         cost_str = row['cost']
         attack_str = row['attack']
         health_str = row['health']
+        rarity = row['rarity']
 
         # Check for non-empty and numeric values
         if cost_str.isdigit() and attack_str.isdigit() and health_str.isdigit():
@@ -19,7 +20,7 @@ with open('cards.csv', newline='', encoding='latin-1') as csvfile:  # Change the
             health = int(health_str)
 
             if cost > 0 and attack > 0 and health > 0 and row['type'] == 'MINION':
-                minion = Minion(row['name'], attack, health, cost)
+                minion = Minion(row['name'], attack, health, cost, rarity)
                 minion_list.append(minion)
 
 # Select 5 random minions from the minion_list
