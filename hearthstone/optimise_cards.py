@@ -18,7 +18,7 @@ def objective_function(card_selection):
     env = HearthstoneEnv(minion_player_list, minion_opponent_list)
     # Simulate the environment and return the win rate
     win_rate = sim_env(NO_OF_GAMES, MAX_TURN, minion_player_list, minion_opponent_list, env)
-    return win_rate  
+    return 1-abs(0.5-win_rate)
 
 
 
