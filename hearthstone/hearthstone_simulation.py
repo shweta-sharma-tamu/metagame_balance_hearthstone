@@ -1,6 +1,8 @@
 import numpy as np
+import random
 from Minion import Minion  # Import the Minion class from your module
 from HearthstoneEnv import HearthstoneEnv  # Import the HearthstoneEnv class from your module
+from loadMinion import loadMinionFromFile
 
 def sim_env(num_game, max_turn, minion_player_list, minion_opponent_list, env):
     results = []
@@ -31,8 +33,9 @@ def sim_env(num_game, max_turn, minion_player_list, minion_opponent_list, env):
 
 if __name__ == "__main__":
     num_game, max_turn = 1000, 1000
-    minion_player_list = np.array([Minion('A', 5, 3, 3, 1), Minion('A', 2, 8, 3, 1), Minion('C', 3, 3, 3, 1)])
-    minion_opponent_list = np.array([Minion('F', 10, 30, 3, 2), Minion('E', 50, 80, 3, 1), Minion('D', 20, 30, 3, 1)])
+    minion_list = loadMinionFromFile()
+    minion_player_list = random.sample(minion_list, 30)
+    minion_opponent_list = random.sample(minion_list, 30)
     env = HearthstoneEnv(minion_player_list, minion_opponent_list)
     
     win_rate = sim_env(num_game, max_turn, minion_player_list, minion_opponent_list, env)
