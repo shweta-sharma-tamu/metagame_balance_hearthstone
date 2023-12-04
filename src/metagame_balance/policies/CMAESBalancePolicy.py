@@ -30,6 +30,9 @@ class CMAESBalancePolicyV2(MetagameBalancePolicy):
         x = state.encode()
         y = evaluation_result.encode()
 
+        print('state in cmaes' + x)
+        print('evaluation_result:'+ evaluation_result)
+
         self.results['x'].append(x)
         self.results['y'].append(y)
 
@@ -76,6 +79,10 @@ class CMAESBalancePolicy(BalancePolicy):
         y = meta_data.evaluate()
         self.results['x'].append(state)
         self.results['y'].append(y)
+
+
+        print('state in cmaes' +self.results['x'] )
+        print('evaluation_result:'+ self.results['y'])
         if len(self.generation_samples) == 0:
             if self.optimizer is not None:
                 self.optimizer.tell(self.results['x'], self.results['y'])

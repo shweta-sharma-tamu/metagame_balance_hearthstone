@@ -9,12 +9,9 @@ from typing import NamedTuple
 from metagame_balance.cool_game.env import CoolGameEnvironment, CoolGameStateDelta, CoolGameState
 from metagame_balance.framework import Balancer
 from metagame_balance.policies.CMAESBalancePolicy import CMAESBalancePolicyV2
-from metagame_balance.policies_hearthstone.CMAESBalancePolicy import CMAESBalancePolicyHearthStone
 from metagame_balance.rpsfw_scratch import RPSFWEnvironment, RPSFWStateDelta
 from metagame_balance.vgc.util.RosterParsers import MetaRosterStateParser as VGCParser
 from metagame_balance.vgc_scratch import VGCEnvironment, VGCStateDelta
-from metagame_balance.hearthstone.util.RosterParsers import MetaRosterStateParser as HSParser
-from metagame_balance.hearthstone_scratch import HSEnvironment, HSStateDelta
 
 
 def init_rpsfw_domain(args: argparse.Namespace):
@@ -43,23 +40,6 @@ def init_vgc_domain(args: argparse.Namespace):
                             consider_hp=not args.ignore_hp),
         "state_delta_constructor": VGCStateDelta.decode,
         "name": "vgc",
-    }
-
-def init_hearthstone_domain(args: argparse.Namespace):
-    return {
-        "balancer": CMAESBalancePolicyHearthStone(init_var=args.cma_init_var),
-        "env": HSEnvironment(roster_path=args.roster_path or None,
-                              n_league_epochs=args.n_league_epochs,
-                              n_battles_per_league=args.n_battles_per_league,
-                              reg_param=args.reg,
-                              alg_baseline=args.baseline,
-                              team_size=args.team_size,
-                              update_after=args.update_after
-                              ),
-        "parser": HSParser(num_hs=args.num_hs or None,
-                            consider_hp=not args.ignore_hp),
-        "state_delta_constructor": HSStateDelta.decode,
-        "name": "hs",
     }
 
 
@@ -108,20 +88,6 @@ def setup_argparser():
     vgc_parser.add_argument('--team_size', type=int, default=3)
     vgc_parser.add_argument("--update_after", type=int, default=100)
     vgc_parser.set_defaults(func=init_vgc_domain)
-
-    # hs
-    hs_parser = subparsers.add_parser("hs")
-    hs_parser.add_argument("--cma_init_var", type=float, default=0.05)
-    # don't adjust this.
-    hs_parser.add_argument('--n_league_epochs', type=int, default=1)
-    # stage2 iter
-    hs_parser.add_argument('--n_battles_per_league', type=int, default=10)
-    hs_parser.add_argument('--roster_path', type=str)
-    hs_parser.add_argument('--num_hs', type=int, default=30)
-    hs_parser.add_argument('--ignore_hp', action='store_true')
-    hs_parser.add_argument('--team_size', type=int, default=3)
-    hs_parser.add_argument("--update_after", type=int, default=100)
-    hs_parser.set_defaults(func=init_hearthstone_domain)
 
     coolgame_parser = subparsers.add_parser("coolgame")
     coolgame_parser.add_argument("--cma_init_var", type=float, default=0.05)
