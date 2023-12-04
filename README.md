@@ -1,6 +1,3 @@
-Certainly! Below is a template for your README.md file for your GitHub project:
-
-```markdown
 # Metagame Balance Hearthstone
 
 This repository contains a simulator and optimization algorithm for balancing the game meta in Hearthstone.
