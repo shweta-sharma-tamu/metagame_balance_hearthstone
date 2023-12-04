@@ -57,4 +57,3 @@ Feel free to contribute by forking the repository and creating pull requests. If
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
-```
